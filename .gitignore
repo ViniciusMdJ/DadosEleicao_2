@@ -1,3 +1,9 @@
+*.txt
+*.csv
+.vscode
+tp_P3
+
+
 # Prerequisites
 *.d
 
