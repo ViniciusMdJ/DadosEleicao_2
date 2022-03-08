@@ -1,5 +1,11 @@
 #ifndef PARTIDOS_H
 #define PARTIDOS_H
+
+#include <vector>
+#include <string>
+
+#include "../include/candidatos.h"
+
 class Partidos{
 
 string sigla;
@@ -9,7 +15,7 @@ int votosLegenda;
 
 int votosNominasTotais;
 int qtdEleitos;
-//LinkedList<Candidato> listaCandidatos;
+vector<Candidato> listaCandidatos;
 
 public:
 

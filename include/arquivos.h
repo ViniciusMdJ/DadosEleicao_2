@@ -5,13 +5,13 @@ using namespace std;
 
 #include <iostream>
 #include <string>
-#include <list>
+#include <vector>
 
 #include "../include/partidos.h"
 #include "../include/candidatos.h"
 
 
-list<Candidato> leArquivoCandidatos(string nomeArq);
+vector<Candidato*> leArquivoCandidatos(string nomeArq);
 
 
 #endif//ARQUIVOS_H
