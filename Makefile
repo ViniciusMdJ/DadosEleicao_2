@@ -1,4 +1,4 @@
-TARGET := tp_P3
+TARGET := vereadores
 LIBS := -lm
 CFLAGS := -Wall -g -std=c++11
 OBJDIR := obj/

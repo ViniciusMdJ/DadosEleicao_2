@@ -27,23 +27,28 @@ enumCandidato::Sexo sexo;
 time_t dataNasc;
 enumCandidato::DestinoVoto destinoVoto;
 int numeroPartido;
-Partido *partido;
+const Partido *partido;
 
-enumCandidato::Situacao verificaSituacao(string situacao);
+enumCandidato::Situacao verificaSituacao(string& situacao);
 
-enumCandidato::Sexo verificaSexo(string sexo);
+enumCandidato::Sexo verificaSexo(string& sexo);
 
-enumCandidato::DestinoVoto verificaDestinoVoto(string destinoVoto);
+enumCandidato::DestinoVoto verificaDestinoVoto(string& destinoVoto);
 
 public:
 Candidato(int num, int votosNominais, string& situacao, string& nome, string& nomeUrna, string& sexo, time_t dataNasc, string& destinoVoto, int numeroPartido);
-Candidato();
-Candidato(const Candidato&);
-~Candidato();
-void operator=(const Candidato&);
-
+//Candidato(const Candidato&);
+//void operator=(const Candidato&);
 void print() const;
 void println() const;
+
+enumCandidato::DestinoVoto getDestinoVoto() const;
+enumCandidato::Situacao getSituacao() const;
+int getNumeroPartido() const;
+int getVotos() const;
+
+void setPartido(const Partido* p);
+
 
 
 };

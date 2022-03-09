@@ -11,7 +11,8 @@ using namespace std;
 #include "../include/candidatos.h"
 
 
-vector<Candidato*> leArquivoCandidatos(string nomeArq);
+void leArquivoCandidatos(string nomeArq, vector<Candidato>& candidatos);
 
+void leArquivoPartidos(string nomeArq, vector<Partido>& partidos);
 
 #endif//ARQUIVOS_H

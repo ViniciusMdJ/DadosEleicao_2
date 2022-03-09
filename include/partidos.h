@@ -6,18 +6,37 @@
 
 #include "../include/candidatos.h"
 
-class Partidos{
+using namespace std;
 
-string sigla;
+
+class Partido{
+
 int numero;
-string nome;
 int votosLegenda;
+string nome;
+string sigla;
 
-int votosNominasTotais;
+int votosNominaisTotais;
 int qtdEleitos;
 vector<Candidato> listaCandidatos;
 
 public:
+
+Partido(int numero, int votosLegenda, string& nome, string& sigla);
+
+
+
+bool verificaCandidato(const Candidato& cand) const;
+void cadastraCandidato(Candidato& cand);
+
+int getQtdEleitos() const;
+
+void print() const;
+void println() const;
+
+void getCandidatosEleitos(vector<Candidato>& lista) const;
+
+vector<Candidato> getListaCandidatos();
 
 };
 
