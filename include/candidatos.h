@@ -9,11 +9,13 @@ using namespace std;
 #include <string>
 
 class Partido;
+
 namespace enumCandidato{
 enum Situacao {ELEITO, NAOELEITO, SUPLENTE};
 enum Sexo {M, F};
 enum DestinoVoto {VALIDO, INVALIDO};
 }
+
 
 class Candidato{
 
@@ -44,13 +46,18 @@ void println() const;
 
 enumCandidato::DestinoVoto getDestinoVoto() const;
 enumCandidato::Situacao getSituacao() const;
+enumCandidato::Sexo getSexo() const;
 int getNumeroPartido() const;
 int getVotos() const;
+int getVotosNominais() const;
+time_t getDataNasc() const;
 
 void setPartido(const Partido* p);
 
 
 
 };
+
+bool compareCandidatos(Candidato& candidato1, Candidato& candidato2);
 
 #endif

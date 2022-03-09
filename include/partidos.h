@@ -36,7 +36,13 @@ void println() const;
 
 void getCandidatosEleitos(vector<Candidato>& lista) const;
 
-vector<Candidato> getListaCandidatos();
+vector<Candidato> getListaCandidatos() const;
+
+int getVotosLegenda() const;
+
+int getNominaisTotais() const;
+
+string getSigla() const;
 
 };
 

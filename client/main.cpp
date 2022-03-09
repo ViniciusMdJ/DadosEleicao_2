@@ -8,6 +8,7 @@ using namespace std;
 #include "../include/partidos.h"
 #include "../include/candidatos.h"
 #include "../include/TSE.h"
+#include "../include/relatorio.h"
 
 using namespace std;
 
@@ -22,15 +23,19 @@ int main(int argc, char const *argv[]){
     string dataEleicao(argv[3]);
     TSE tse(arcCandidato, arcPartidos, dataEleicao);
 
-    vector<Candidato> eleitos;
-    tse.getCandidatosEleitos(eleitos);
+    numeroVagas(tse);
+    cout << endl;
+    candidatosEleitos(tse);
+    cout << endl;
+    candidatosMaisVotados(tse);
 
-    cout << endl << "candidatos eleitos:" << endl;
-    for(Candidato i : eleitos){
-        i.println();
-    }
+    cout << endl;
+    
+    cout << endl;
+    distribuicaoEleitosSexo(tse);
+    cout << endl;
+    totalVotos(tse);
 
-    cout << "enum ELEITO: " << enumCandidato::ELEITO << endl;
 
     return 0;
 }

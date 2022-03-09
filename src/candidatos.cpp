@@ -1,4 +1,5 @@
 #include "../include/candidatos.h"
+#include "../include/partidos.h"
 #include "../include/DateUtils.h"
 #include "../include/StringUtils.h"
 #include <iostream>
@@ -59,7 +60,14 @@ enumCandidato::DestinoVoto Candidato::verificaDestinoVoto(string& destinoVoto){
 }
 
 void Candidato::print() const{
-    cout << this->numero << " " << this->votosNominais << " " << this->nome << " situação: " << this->situacao << " " << this->nomeUrna << " " << cpp_util::formatDate(this->dataNasc, cpp_util::DATE_FORMAT_PT_BR_SHORT) << " " << this->destinoVoto << " " << this->numeroPartido;
+    cout << nome << " / " << nomeUrna << " (" << partido->getSigla() << ", " << votosNominais << ((votosNominais < 2) ? " voto)" : " votos)");
+
+        /*1 > 2 ? true : false
+		if (votosNominais < 2) {
+			return saida + " voto)";
+		} else {
+			return saida + " votos)";
+		}*/
 }
 
 void Candidato::println() const{
@@ -71,6 +79,14 @@ enumCandidato::DestinoVoto Candidato::getDestinoVoto() const{
     return this->destinoVoto;
 }
 
+enumCandidato::Situacao Candidato::getSituacao() const{
+    return this->situacao;
+}
+
+enumCandidato::Sexo Candidato::getSexo() const{
+    return sexo;
+}
+
 int Candidato::getNumeroPartido() const{
     return this->numeroPartido;
 }
@@ -79,10 +95,24 @@ int Candidato::getVotos() const{
     return this->votosNominais;
 }
 
-enumCandidato::Situacao Candidato::getSituacao() const{
-    return this->situacao;
+
+int Candidato::getVotosNominais() const{
+    return this->votosNominais;
+}
+
+time_t Candidato::getDataNasc() const{
+    return this->dataNasc;
 }
 
 void Candidato::setPartido(const Partido *p){
     this->partido = p;
 }
+
+bool compareCandidatos(Candidato& candidato1, Candidato& candidato2){
+		int aux = candidato2.getVotosNominais() - candidato1.getVotosNominais();
+        if(aux > 0) return false;
+		if (aux == 0) {
+            if(candidato1.getDataNasc() - candidato2.getDataNasc() > 0) return false;
+		}
+		return true;
+	}

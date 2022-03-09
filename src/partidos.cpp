@@ -37,8 +37,6 @@ void Partido::cadastraCandidato(Candidato& cand){
     if(cand.getSituacao() == enumCandidato::ELEITO){
         this->qtdEleitos++;
     }
-    //cout << "cadastrou no partido: ";
-    //this->println();
 
     cand.setPartido(this);
     this->listaCandidatos.push_back(cand);
@@ -61,6 +59,18 @@ void Partido::getCandidatosEleitos(vector<Candidato>& lista) const{
     }
 }
 
-vector<Candidato> Partido::getListaCandidatos(){
+vector<Candidato> Partido::getListaCandidatos() const{
     return listaCandidatos;
+}
+
+int Partido::getVotosLegenda() const{
+    return votosLegenda;
+}
+
+int Partido::getNominaisTotais() const{
+    return votosNominaisTotais;
+}
+
+string Partido::getSigla() const{
+    return this->sigla;
 }

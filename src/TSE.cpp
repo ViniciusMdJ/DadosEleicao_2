@@ -18,11 +18,14 @@ TSE::TSE(string& arqCandidatos, string& arqPartidos, string& dataEleicao){
 
     this->dataEleicao = parseDate(dataEleicao, DATE_FORMAT_PT_BR_SHORT);
 
+    //cout << this->dataEleicao << endl;
+
     this->qtdVagas = 0;
     leArquivoPartidos(arqPartidos, this->partidos);
 
     vector<Candidato> candidatos;
     leArquivoCandidatos(arqCandidatos, candidatos);
+    //cout << "Data nascimento 1 candidato: " << candidatos.at(0).getDataNasc() << endl;
 
     for(Candidato i : candidatos){
         if(i.getDestinoVoto() == enumCandidato::VALIDO){
@@ -42,10 +45,7 @@ TSE::TSE(string& arqCandidatos, string& arqPartidos, string& dataEleicao){
 }
 
 void TSE::getCandidatosEleitos(vector<Candidato>& listaCandidatosEleitos) {
-
-    cout << "qtdEleitos: " << this->qtdVagas << endl;
 	for(Partido i : this->partidos) {
-        i.println();
 		i.getCandidatosEleitos(listaCandidatosEleitos);
 	}
 }
