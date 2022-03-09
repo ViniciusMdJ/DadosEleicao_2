@@ -17,7 +17,7 @@ class TSE{
     void getCandidatosEleitos(vector<Candidato>& listaCandidatosEleitos);
     void getAllCandidatos(vector<Candidato>& listaCandidatos);
 
-    vector<Partido> getListaPartidos();
+    vector<Partido>& getListaPartidos();
 
     int getQtdVagas();
 

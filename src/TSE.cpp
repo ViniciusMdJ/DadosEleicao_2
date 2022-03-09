@@ -59,7 +59,7 @@ void TSE::getAllCandidatos(vector<Candidato>& listaCandidatos) {
 	}
 }
 
-vector<Partido> TSE::getListaPartidos() {
+vector<Partido>& TSE::getListaPartidos() {
 		return this->partidos;
 	}
 

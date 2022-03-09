@@ -39,20 +39,20 @@ enumCandidato::DestinoVoto verificaDestinoVoto(string& destinoVoto);
 
 public:
 Candidato(int num, int votosNominais, string& situacao, string& nome, string& nomeUrna, string& sexo, time_t dataNasc, string& destinoVoto, int numeroPartido);
-//Candidato(const Candidato&);
-//void operator=(const Candidato&);
 void print() const;
 void println() const;
+void imprimeFormatoPartido() const;
 
 enumCandidato::DestinoVoto getDestinoVoto() const;
 enumCandidato::Situacao getSituacao() const;
 enumCandidato::Sexo getSexo() const;
 int getNumeroPartido() const;
-int getVotos() const;
 int getVotosNominais() const;
 time_t getDataNasc() const;
 
 void setPartido(const Partido* p);
+
+int calculaIdade(time_t atual) const;
 
 
 

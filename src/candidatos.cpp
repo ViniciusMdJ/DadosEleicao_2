@@ -3,6 +3,8 @@
 #include "../include/DateUtils.h"
 #include "../include/StringUtils.h"
 #include <iostream>
+#include <time.h>
+#include <ctime>
 
 
 using namespace cpp_util;
@@ -75,6 +77,15 @@ void Candidato::println() const{
     cout << endl;
 }
 
+void Candidato::imprimeFormatoPartido() const{
+    cout << nomeUrna << " (" << numero << ", " << votosNominais;
+	if (votosNominais <= 1) {
+		cout << " voto)";
+	} else {
+		cout << " votos)";
+	}
+}
+
 enumCandidato::DestinoVoto Candidato::getDestinoVoto() const{
     return this->destinoVoto;
 }
@@ -91,11 +102,6 @@ int Candidato::getNumeroPartido() const{
     return this->numeroPartido;
 }
 
-int Candidato::getVotos() const{
-    return this->votosNominais;
-}
-
-
 int Candidato::getVotosNominais() const{
     return this->votosNominais;
 }
@@ -108,11 +114,15 @@ void Candidato::setPartido(const Partido *p){
     this->partido = p;
 }
 
+int Candidato::calculaIdade(time_t atual) const{
+    return difftime(atual, dataNasc) / 31536000;
+}
+
 bool compareCandidatos(Candidato& candidato1, Candidato& candidato2){
-		int aux = candidato2.getVotosNominais() - candidato1.getVotosNominais();
-        if(aux > 0) return false;
-		if (aux == 0) {
-            if(candidato1.getDataNasc() - candidato2.getDataNasc() > 0) return false;
-		}
-		return true;
+	int aux = candidato2.getVotosNominais() - candidato1.getVotosNominais();
+    if(aux > 0) return false;
+	if (aux == 0) {
+        if(candidato1.getDataNasc() - candidato2.getDataNasc() > 0) return false;
 	}
+	return true;
+}

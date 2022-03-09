@@ -28,13 +28,23 @@ int main(int argc, char const *argv[]){
     candidatosEleitos(tse);
     cout << endl;
     candidatosMaisVotados(tse);
-
     cout << endl;
-    
+    candidatosPrejudicados(tse);
+    cout << endl;
+    candidatosBeneficiados(tse);
+    cout << endl;
+    votosTotalizadosPartidoQtdCandidatosEleitos(tse);
+    cout << endl;
+    votosLegenda(tse);
+    cout << endl;
+    primeiroUltimoCandidato(tse);
+    cout << endl;
+    distribuicaoEleitosFaixaEtaria(tse);
     cout << endl;
     distribuicaoEleitosSexo(tse);
     cout << endl;
     totalVotos(tse);
+    cout << endl;
 
 
     return 0;

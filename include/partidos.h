@@ -42,8 +42,20 @@ int getVotosLegenda() const;
 
 int getNominaisTotais() const;
 
+int getNumero() const;
+
 string getSigla() const;
 
+Candidato& getMaisVotado();
+
+Candidato& getMenosVotado();
+
 };
+
+bool ComparaVotosTotalizados(Partido& o1, Partido& o2);
+
+bool ComparaVotosLegenda(Partido& o1, Partido& o2);
+
+bool ComparaMaisVotado(Partido& o1, Partido& o2);
 
 #endif//PARTIDOS_H
