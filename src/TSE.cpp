@@ -17,16 +17,14 @@ TSE::TSE(string& arqCandidatos, string& arqPartidos, string& dataEleicao){
     }
 
     this->dataEleicao = parseDate(dataEleicao, DATE_FORMAT_PT_BR_SHORT);
-
-    //cout << this->dataEleicao << endl;
+;
 
     this->qtdVagas = 0;
     leArquivoPartidos(arqPartidos, this->partidos);
 
     vector<Candidato> candidatos;
     leArquivoCandidatos(arqCandidatos, candidatos);
-    //cout << "Data nascimento 1 candidato: " << candidatos.at(0).getDataNasc() << endl;
-
+    
     for(Candidato i : candidatos){
         if(i.getDestinoVoto() == enumCandidato::VALIDO){
             for(Partido& j : this->partidos){

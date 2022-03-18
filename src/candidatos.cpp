@@ -2,6 +2,7 @@
 #include "../include/partidos.h"
 #include "../include/DateUtils.h"
 #include "../include/StringUtils.h"
+#include "../include/Tokenizer.h"
 #include <iostream>
 #include <time.h>
 #include <ctime>
@@ -12,31 +13,14 @@ using namespace cpp_util;
 Candidato::Candidato(int num, int votosNominais, string& situacao, string& nome, string& nomeUrna, string& sexo, time_t dataNasc, string& destinoVoto, int numeroPartido){
     this->numero = num;
     this->votosNominais = votosNominais;
-    this->situacao = verificaSituacao(ltrim(situacao));
-    this->nome = ltrim(nome);
-    this->nomeUrna = ltrim(nomeUrna);
-    this->sexo = verificaSexo(ltrim(sexo));
+    this->situacao = verificaSituacao(trim(situacao));
+    this->nome = trim(nome);
+    this->nomeUrna = trim(nomeUrna);
+    this->sexo = verificaSexo(trim(sexo));
     this->dataNasc = dataNasc;
-    this->destinoVoto = verificaDestinoVoto(ltrim(destinoVoto));
+    this->destinoVoto = verificaDestinoVoto(trim(destinoVoto));
     this->numeroPartido = numeroPartido;
 }
-
-/*
-Candidato::Candidato(const Candidato& c){
-    *this = c;
-}
-
-void Candidato::operator=(const Candidato& c){
-    this->numero = c.numero;
-    this->votosNominais = c.votosNominais;
-    this->situacao = c.situacao;
-    this->nome = c.nome;
-    this->nomeUrna = c.nomeUrna;
-    this->sexo = c.sexo;
-    this->dataNasc = c.dataNasc;
-    this->destinoVoto = c.destinoVoto;
-    this->numeroPartido = c.numeroPartido;
-}*/
 
 enumCandidato::Situacao Candidato::verificaSituacao(string& situacao){
     if(situacao.compare("Eleito") == 0){
@@ -63,13 +47,6 @@ enumCandidato::DestinoVoto Candidato::verificaDestinoVoto(string& destinoVoto){
 
 void Candidato::print() const{
     cout << nome << " / " << nomeUrna << " (" << partido->getSigla() << ", " << votosNominais << ((votosNominais < 2) ? " voto)" : " votos)");
-
-        /*1 > 2 ? true : false
-		if (votosNominais < 2) {
-			return saida + " voto)";
-		} else {
-			return saida + " votos)";
-		}*/
 }
 
 void Candidato::println() const{
@@ -115,7 +92,30 @@ void Candidato::setPartido(const Partido *p){
 }
 
 int Candidato::calculaIdade(time_t atual) const{
-    return difftime(atual, dataNasc) / 31536000;
+	int diaAtual, mesAtual, diaNasc, mesNasc;
+
+	// Transformando as datas nos strings do formato "DD/MM/YYYY" e separando pela
+	// "/"
+    Tokenizer separaNasc(formatDate(dataNasc, DATE_FORMAT_PT_BR_SHORT), '/');
+    Tokenizer separaAtual(formatDate(atual, DATE_FORMAT_PT_BR_SHORT), '/');
+    vector<string> separadoAtual = separaAtual.remaining();
+	vector<string> separadoNasc = separaNasc.remaining();
+
+	diaAtual = stoi(separadoAtual[0]);
+	mesAtual = stoi(separadoAtual[1]);
+
+	diaNasc = stoi(separadoNasc[0]);
+	mesNasc = stoi(separadoNasc[1]);
+
+	int diffAnos = stoi(separadoAtual[2]) - stoi(separadoNasc[2]);
+	if (mesAtual < mesNasc) {
+		diffAnos--;
+	} else if (mesAtual == mesNasc) {
+		if (diaAtual < diaNasc) {
+			diffAnos--;
+		}
+	}
+	return diffAnos;
 }
 
 bool compareCandidatos(Candidato& candidato1, Candidato& candidato2){

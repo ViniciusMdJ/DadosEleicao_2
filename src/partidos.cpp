@@ -8,8 +8,8 @@ using namespace cpp_util;
 Partido::Partido(int numero, int votosLegenda, string& nome, string& sigla){
     this->numero = numero;
     this->votosLegenda = votosLegenda;
-    this->nome = ltrim(nome);
-    this->sigla = ltrim(sigla);    
+    this->nome = trim(nome);
+    this->sigla = trim(sigla);    
     
     this->votosNominaisTotais = 0;
     this->qtdEleitos = 0;
@@ -123,9 +123,9 @@ bool ComparaMaisVotado(Partido& o1, Partido& o2){
 	// Verifica se os partidos possuem algum candidato mais votado
 	// ordenando de acordo.
 	if (o1.getNominaisTotais() == 0 && o2.getNominaisTotais() > 0) {
-		return true;
-	} else if (o2.getNominaisTotais() == 0) {
 		return false;
+	} else if (o2.getNominaisTotais() == 0) {
+		return true;
 	}
     int aux = 0;
 	aux = candidato2.getVotosNominais() - candidato1.getVotosNominais();

@@ -3,6 +3,7 @@
 #include "../include/candidatos.h"
 #include "../include/partidos.h"
 #include "../include/NumberUtils.h"
+#include "../include/DateUtils.h"
 
 #include <iostream>
 #include <algorithm>
@@ -130,7 +131,6 @@ void votosLegenda(TSE& tse) {
 		}
 		if (j.getVotosLegenda() + j.getNominaisTotais() != 0) {
 			double por100 = (100.0 * (j.getVotosLegenda() / (double)(j.getVotosLegenda() + j.getNominaisTotais())));
-			//printf("%.2f", por100);
 			cout << formatDoubleCurrency(por100, LOCALE_PT_BR) << "% do total do partido)" << endl;
 		} else {
 			cout << "proporção não calculada, 0 voto no partido)" << endl;
@@ -185,15 +185,10 @@ void distribuicaoEleitosFaixaEtaria(TSE& tse){
 	cout << "Eleitos, por faixa etária (na data da eleição):" << endl;
 	if (tse.getQtdVagas() != 0) {
 		cout << "      Idade < 30: " << menor30 << " (" << formatDoubleCurrency((((double) (menor30 + 0.0) / qtdVagas) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf("%.2f%%)\n", (((double) (menor30 + 0.0) / qtdVagas) * 100.0));
 		cout << "30 <= Idade < 40: " << maiorIgual30Menor40 << " (" << formatDoubleCurrency((((double) (maiorIgual30Menor40 + 0.0) / qtdVagas) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf("%.2f%%)\n", (((double) (maiorIgual30Menor40 + 0.0) / qtdVagas) * 100.0));
 		cout << "40 <= Idade < 50: " << maiorIgual40Menor50 << " (" << formatDoubleCurrency((((double) (maiorIgual40Menor50 + 0.0) / qtdVagas) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf("%.2f%%)\n", (((double) (maiorIgual40Menor50 + 0.0) / qtdVagas) * 100.0));
 		cout << "50 <= Idade < 60: " << maiorIgual50Menor60 << " (" << formatDoubleCurrency((((double) (maiorIgual50Menor60 + 0.0) / qtdVagas) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf("%.2f%%)\n", (((double) (maiorIgual50Menor60 + 0.0) / qtdVagas) * 100.0));
 		cout << "60 <= Idade     : " << maiorIgual60 << " (" << formatDoubleCurrency((((double) (maiorIgual60 + 0.0) / qtdVagas) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf("%.2f%%)\n", (((double) (maiorIgual60 + 0.0) / qtdVagas) * 100.0));
 	} else {
 		cout << "proporções não calculadas" << endl;
 	}
@@ -213,9 +208,7 @@ void distribuicaoEleitosSexo(TSE& tse){
 
 	if(tse.getQtdVagas() != 0){
 		cout << "Feminino:  " << qtdFem << " (" << formatDoubleCurrency((((double) (qtdFem + 0.0) / tse.getQtdVagas()) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf(" (%.2f%%)\n", (((double) (qtdFem + 0.0) / tse.getQtdVagas()) * 100.0));
 		cout << "Masculino: " << qtdMas << " (" << formatDoubleCurrency((((double) (qtdMas + 0.0) / tse.getQtdVagas()) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf(" (%.2f%%)\n", (((double) (qtdMas + 0.0) / tse.getQtdVagas()) * 100.0));
 	}
 	else{
 		cout << "proporções não calculadas" << endl;
@@ -235,14 +228,12 @@ void totalVotos(TSE& tse){
 
     if (qtdLegenda + qtdNominais != 0) {
 		cout << " (" << formatDoubleCurrency((((double) (qtdNominais + 0.0) / (qtdLegenda + qtdNominais)) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf(" (%.2f%%)\n", (((double) (qtdNominais + 0.0) / (qtdLegenda + qtdNominais)) * 100.0));
 	} else {
 		cout << " (proporção não calculada)" << endl;
 	}
 	cout << "Total de votos de legenda: " << qtdLegenda;
 	if (qtdLegenda + qtdNominais != 0) {
 		cout  << " (" << formatDoubleCurrency((((double) (qtdLegenda + 0.0) / (qtdLegenda + qtdNominais)) * 100.0), LOCALE_PT_BR) << "%)" << endl;
-		//printf(" (%.2f%%)\n", (((double) (qtdLegenda + 0.0) / (qtdLegenda + qtdNominais)) * 100.0));
 	} else {
 		cout << " (proporção não calculada)" << endl;
 	}
